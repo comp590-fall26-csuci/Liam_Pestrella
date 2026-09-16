@@ -1,0 +1,5 @@
+# Ignore everything inside the output folder
+output/*
+
+# Exception: Do NOT ignore the .gitkeep file inside it
+!output/.gitkeep
