@@ -15,7 +15,6 @@ jobs:
       uses: actions/checkout@v4
     - name: Build
       run: make
-      working-directory: ./lab4/lab3/590MakefileLab
     - name: Run tests to verify correct output
       working-directory: ./lab4/lab3/590MakefileLab
       run: |
