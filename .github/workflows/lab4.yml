@@ -12,22 +12,18 @@ jobs:
 
     defaults: 
       run:
-        working-directory: ./lab4/lab3/590MakefileLab
+        working-directory: ./lab4/lab3
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: Build
-      run: gcc -o main -Iheaders -lm main.c fibonacci.c
-    - name: Run
-      run: ./main
+      run: make
     - name: Run tests to verify correct output
       run: |
         # run tests to verify fibonacci output and golden ratio
-        OUTPUT=$(./main)
-        echo "Program output:"
+        OUTPUT=$(./fibonacci)
         echo "$OUTPUT"
-        
-        echo "$OUTPUT" | grep -q "55"
+        echo "$OUTPUT" | grep -qw "55"
         echo "$OUTPUT" | grep -q "1.618034"
 
