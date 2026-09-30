@@ -10,15 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./lab4
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: Build
       run: make
+      working-directory: ./lab4/lab3
     - name: Run tests to verify correct output
       run: |
         # run tests to verify fibonacci output and golden ratio
