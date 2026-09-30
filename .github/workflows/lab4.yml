@@ -17,6 +17,7 @@ jobs:
       run: make
       working-directory: ./lab4/lab3/590MakefileLab
     - name: Run tests to verify correct output
+      working-directory: ./lab4/lab3/590MakefileLab/fibonacci
       run: |
         # run tests to verify fibonacci output and golden ratio
         OUTPUT=$(./fibonacci)
