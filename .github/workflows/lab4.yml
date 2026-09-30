@@ -10,11 +10,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults: 
+      run:
+        working-directory: ./lab4/lab3/590MakefileLab
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: Build
-      working-directory: ./lab3/590MakefileLab
       run: gcc -o main -Iheaders -lm main.c fibonacci.c
     - name: Run
       run: ./main
