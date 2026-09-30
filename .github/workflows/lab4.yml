@@ -1,0 +1,33 @@
+name: C/C++ CI Lab 4
+
+on:
+  push:
+    branches: [ "lab4" ]
+  pull_request:
+    branches: [ "lab4" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults: 
+      run:
+        working-directory: ./lab4/lab3/590MakefileLab
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build
+      run: gcc -o main -Iheaders -lm main.c fibonacci.c
+    - name: Run
+      run: ./main
+    - name: Run tests to verify correct output
+      run: |
+        # run tests to verify fibonacci output and golden ratio
+        OUTPUT=$(./main)
+        echo "Program output:"
+        echo "$OUTPUT"
+        
+        echo "$OUTPUT" | grep -q "55"
+        echo "$OUTPUT" | grep -q "1.618034"
+
