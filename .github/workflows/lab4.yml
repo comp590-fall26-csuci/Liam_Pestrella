@@ -12,7 +12,7 @@ jobs:
 
     defaults: 
       run:
-        working-directory: ./lab4/lab3/590MakefileLab
+        working-directory: ./lab3/590MakefileLab
 
     steps:
     - name: Checkout code
