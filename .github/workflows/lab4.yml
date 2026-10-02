@@ -2,9 +2,9 @@ name: C/C++ CI Lab 4
 
 on:
   push:
-    branches: [ "lab4" ]
+    branches: [main]
   pull_request:
-    branches: [ "lab4" ]
+    branches: [main]
 
 jobs:
   build:
