@@ -1,27 +1,37 @@
-name: C/C++ CI Lab 4
+name: C/C++ CI Lab 5
 
 on:
   push:
-    branches: [ "lab4" ]
+    branches: ["Lab5"]
   pull_request:
-    branches: [ "lab4" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Build
-      run: make
-      working-directory: ./lab4/lab3/590MakefileLab
-    - name: Run tests to verify correct output
-      working-directory: ./lab4/lab3/590MakefileLab
-      run: |
-        # run tests to verify fibonacci output and golden ratio
-        OUTPUT=$(./fibonacci)
-        echo "$OUTPUT"
-        echo "$OUTPUT" | grep -qw "55"
-        echo "$OUTPUT" | grep -q "1.618034"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Build
+        run: make
+        working-directory: ./lab4/lab3/590MakefileLab
+
+      - name: Run tests to verify correct output
+        working-directory: ./lab4/lab3/590MakefileLab
+        run: |
+          OUTPUT=$(./fibonacci)
+          echo "$OUTPUT"
+          echo "$OUTPUT" | grep -qw "55"
+          echo "$OUTPUT" | grep -q "1.618034"
+
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Scan with Semgrep Community Edition
+        run: semgrep scan --config auto

@@ -1,0 +1,33 @@
+name: AFL++ Lab 5
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    container:
+      image: aflplusplus/aflplusplus
+
+    defaults:
+      run:
+        working-directory: ./lab4/lab3/590MakefileLab
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build dvcp with AFL++ instrumentation
+        run: afl-clang-fast -O1 -g dvcp.c -o dvcp_afl
+
+      - name: Fuzz dvcp for three minutes
+        run: |
+          mkdir -p seeds
+          printf 'IMG' > seeds/seed
+          AFL_NO_UI=1 afl-fuzz -V 180 -i seeds -o findings -- ./dvcp_afl @@
