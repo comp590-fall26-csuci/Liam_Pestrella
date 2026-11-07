@@ -1,0 +1,23 @@
+name: C/C++ CI Lab 7
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: debian
+
+    steps:
+      - name: Checkout code
+        uses: https://github.com/actions/checkout@v4
+
+      - name: Build
+        run: make
+        working-directory: ./lab4/lab3/590MakefileLab
+
+      - name: Run tests to verify correct output
+        working-directory: ./lab4/lab3/590MakefileLab
+        run: |
+          OUTPUT=$(./fibonacci)
+          echo "$OUTPUT"
+          echo "$OUTPUT" | grep -qw "55"
+          echo "$OUTPUT" | grep -q "1.618034"
