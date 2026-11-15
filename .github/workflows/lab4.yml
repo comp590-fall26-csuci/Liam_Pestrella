@@ -50,5 +50,5 @@ jobs:
         echo "$OUTPUT" | grep -qw "55"
         echo "$OUTPUT" | grep -q "1.618034"
 
-      - name: Scan with Semgrep Community Edition
-        run: semgrep scan --config auto
+    - name: Scan with Semgrep Community Edition
+      run: semgrep scan --config auto
