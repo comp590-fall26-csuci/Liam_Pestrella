@@ -2,9 +2,9 @@ name: C/C++ CI Lab 4
 
 on:
   push:
-    branches: [ "lab4" ]
+    branches: [main]
   pull_request:
-    branches: [ "lab4" ]
+    branches: [main]
 
 jobs:
   build:
@@ -13,9 +13,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
     - name: Build
       run: make
       working-directory: ./lab4/lab3/590MakefileLab
+
+    - name: Run tests
+      run: make test
+      working-directory: ./lab4/lab3/590MakefileLab
+
     - name: Run tests to verify correct output
       working-directory: ./lab4/lab3/590MakefileLab
       run: |
