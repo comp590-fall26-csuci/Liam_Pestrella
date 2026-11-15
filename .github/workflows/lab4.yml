@@ -17,6 +17,10 @@ jobs:
         run: make
         working-directory: ./lab4/lab3/590MakefileLab
 
+      - name: Run unit tests
+        run: make test
+        working-directory: ./lab4/lab3/590MakefileLab
+
       - name: Run tests to verify correct output
         working-directory: ./lab4/lab3/590MakefileLab
         run: |
@@ -30,25 +34,8 @@ jobs:
     container:
       image: semgrep/semgrep
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Build
-      run: make
-      working-directory: ./lab4/lab3/590MakefileLab
-
-    - name: Run tests
-      run: make test
-      working-directory: ./lab4/lab3/590MakefileLab
-
-    - name: Run tests to verify correct output
-      working-directory: ./lab4/lab3/590MakefileLab
-      run: |
-        # run tests to verify fibonacci output and golden ratio
-        OUTPUT=$(./fibonacci)
-        echo "$OUTPUT"
-        echo "$OUTPUT" | grep -qw "55"
-        echo "$OUTPUT" | grep -q "1.618034"
-
-    - name: Scan with Semgrep Community Edition
-      run: semgrep scan --config auto
+      - name: Scan with Semgrep Community Edition
+        run: semgrep scan --config auto
